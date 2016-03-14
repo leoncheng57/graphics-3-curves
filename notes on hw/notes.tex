@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\setlength\parindent{0pt} %This sets \noindent for the entire document :)
+
+\title{graphics notes 3/14/16}
+\author{Leon Cheng}
+\date{March 2016}
+
+\begin{document}
+
+\maketitle
+
+$ x_0 = shape_x (0) $
+
+$ y_0 = shape_y (0) $
+
+$ \text{for }  t: .1 \rightarrow 1$
+
+\quad $x = shape_x(t)$
+
+\quad $y = shape_y(t)$
+
+\quad $ \text{add\_edge} (x_0, y_0, x, y, \text{edges})$
+
+\quad $x_0 = x$
+
+\quad $y_0 = y$
+\\\\
+
+
+include a Parser Script, Example: 
+\begin{lstlisting}
+line
+100 0 0 100 0 100
+line 0 100 0 0 100 100
+display
+ident
+scale
+1.5 1.5 1.5
+apply
+display
+translate
+100 100 0 
+apply
+display
+ident
+zrotate
+20
+xrotate
+20
+yrotate
+-20
+
+\end{lstlisting}
+
+
+\end{document}
