@@ -273,9 +273,14 @@ struct matrix * make_rotZ(double theta) {
   ====================*/
 struct matrix * make_bezier() {
 
-  matrix * coeff = new_matrix( 4, 4);
-
-  coeff->m[0][0] = -1;
+  // matrix * coeff = new_matrix( 4, 4);
+  //
+  // coeff->m[0][0] = -1;
+  // coeff->m[0][0] = -1;
+  // coeff->m[0][0] = -1;
+  // coeff->m[0][0] = -1;
+  // coeff->m[0][0] = -1;
+  //
 
 }
 
