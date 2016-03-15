@@ -21,7 +21,7 @@ int main( int argc, char **argv ) {
   transform = new_matrix(4, 4);
   // add_edge( edges, 100, 100, 100, 200, 200, 200 );
   add_circle( edges, 250, 250, 100, .01 );
-  draw_lines( edges, s, c );
+  //draw_lines( edges, s, c );
   display( s );
 
 
