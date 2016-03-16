@@ -345,4 +345,31 @@ struct matrix * make_hermite() {
   ====================*/
 struct matrix * generate_curve_coefs( double p1, double p2,
 				      double p3, double p4, int type) {
+
+                if ( type == HERMITE_MODE ) {
+                  struct matrix * hermite_co = make_hermite();
+                  struct matrix * pts_rts = new_matrix( 4, 1 );
+                  pts_rts->m[0][0] = p1;
+                  pts_rts->m[1][0] = p2;
+                  pts_rts->m[2][0] = p3;
+                  pts_rts->m[3][0] = p4;
+                  matrix_mult( hermite_co, pts_rts );
+                  return pts_rts;
+                }
+
+                else if (type == BEZIER_MODE){
+                  struct matrix * bezier_co = make_bezier();
+                  struct matrix * pts_pts = new_matrix( 4, 1 );
+                  pts_pts->m[0][0] = p1;
+                  pts_pts->m[1][0] = p2;
+                  pts_pts->m[2][0] = p3;
+                  pts_pts->m[3][0] = p4;
+                  matrix_mult( bezier_co, pts_pts );
+                  return pts_pts;
+                }
+
+                else {
+                  printf("What do you think youre doing?!\n");
+                }
+
 }
