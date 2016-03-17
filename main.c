@@ -19,8 +19,13 @@ int main( int argc, char **argv ) {
 
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
+
+  // edges = generate_curve_coefs( 10, 2, 3, 4, BEZIER_MODE );
+  // print_matrix(edges);
+
   //add_edge( edges, 100, 100, 100, 200, 200, 200 );
   add_circle( edges, 250, 250, 100, .01 );
+  add_curve( edges, 100, 100, 150, 150, 175, 100, 200, 200, 0.1, BEZIER_MODE);
   draw_lines( edges, s, c );
   display( s );
   clear_screen( s );

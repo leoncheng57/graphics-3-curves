@@ -75,6 +75,34 @@ void add_curve( struct matrix *points,
 		double x2, double y2,
 		double x3, double y3,
 		double step, int type ) {
+
+		double x, y;
+		double t = step;
+
+		struct matrix * xcons = generate_curve_coefs( x0, x1, x2, x3, type );
+		struct matrix * ycons = generate_curve_coefs( y0, y1, y2, y3, type );
+		/*
+		for ( t = 0; t <= 1.00000001; t+=step ) {
+			x = cubic_x( xcons->m[0][0], xcons->m[1][0], xcons->m[2][0], xcons->m[3][0], t );
+			y = cubic_y( ycons->m[0][0], ycons->m[1][0], ycons->m[2][0], ycons->m[3][0], t );
+			//printf( "%lf %lf\n", x, y );
+			add_edge( points, x0, y0, 0, x, y, 0 );
+			x0 = x;
+			y0 = y;
+		}
+		*/
+}
+
+double cubic_x( double a, double b, double c, double d, double t ) {
+
+	return ( pow(a, 3)*t ) + ( pow(b, 2)*t ) + ( c*t ) + d;
+
+}
+
+double cubic_y( double a, double b, double c, double d, double t ) {
+
+	return ( pow(a, 3)*t ) + ( pow(b, 2)*t ) + ( c*t ) + d;
+
 }
 
 /*======== void add_point() ==========
