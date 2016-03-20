@@ -19,16 +19,14 @@ int main( int argc, char **argv ) {
 
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
-
-  // edges = generate_curve_coefs( 10, 2, 3, 4, BEZIER_MODE );
-  // print_matrix(edges);
-
   //add_edge( edges, 100, 100, 100, 200, 200, 200 );
-  add_circle( edges, 250, 250, 100, .01 );
-  add_curve( edges, 100, 100, 150, 150, 175, 100, 200, 200, 0.1, BEZIER_MODE);
+  //add_circle( edges, 250, 250, 100, .01 );
+  //add_curve( edges, 200, 250, 150, 50, 300, 250, 300, 250, .01, 1 );
+  add_curve( edges, 150, 150, 150, 50, 350, 150, 350, 300, .01, 0 );
   draw_lines( edges, s, c );
   display( s );
-  clear_screen( s );
+  save_extension(s, "lines.png");
+
 
   if ( argc == 2 )
     parse_file( argv[1], transform, edges, s );

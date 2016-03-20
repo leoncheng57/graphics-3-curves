@@ -305,9 +305,8 @@ struct matrix * make_bezier() {
   ====================*/
 struct matrix * make_hermite() {
 
-
-  struct matrix * coeff = new_matrix( 4, 4);
-
+  struct matrix * coeff = new_matrix( 4, 4 );
+  
   coeff->m[0][0] = 2;
   coeff->m[0][1] = -2;
   coeff->m[0][2] = 1;
@@ -315,7 +314,7 @@ struct matrix * make_hermite() {
   coeff->m[1][0] = -3;
   coeff->m[1][1] = 3;
   coeff->m[1][2] = -2;
-  coeff->m[1][3] = 1;
+  coeff->m[1][3] = -1;
   coeff->m[2][0] = 0;
   coeff->m[2][1] = 0;
   coeff->m[2][2] = 1;
@@ -345,8 +344,8 @@ struct matrix * make_hermite() {
   ====================*/
 struct matrix * generate_curve_coefs( double p1, double p2,
 				      double p3, double p4, int type) {
-
-                if ( type == HERMITE_MODE ) {
+				        
+				         if ( type == HERMITE_MODE ) {
                   struct matrix * hermite_co = make_hermite();
                   struct matrix * pts_rts = new_matrix( 4, 1 );
                   pts_rts->m[0][0] = p1;
@@ -371,5 +370,5 @@ struct matrix * generate_curve_coefs( double p1, double p2,
                 else {
                   printf("What do you think youre doing?!\n");
                 }
-
+				        
 }

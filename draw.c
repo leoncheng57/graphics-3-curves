@@ -69,41 +69,63 @@ to the matrix points
 03/16/12 15:24:25
 jdyrlandweaver
 ====================*/
+double cubic( double t, double a, double b, double c, double d ) {
+  
+    return ( pow(t, 3)*a ) + ( pow(t, 2)*b ) + ( c*t ) + d;
+  
+}
+
+double rate( double t, double a, double b, double c, double d ) {
+ 
+  return ( 3*a*pow(t, 2) + 2*b*t + c ); 
+  
+}
+
 void add_curve( struct matrix *points,
 		double x0, double y0,
 		double x1, double y1,
 		double x2, double y2,
 		double x3, double y3,
 		double step, int type ) {
-
-		double x, y;
-		double t = step;
-
-		struct matrix * xcons = generate_curve_coefs( x0, x1, x2, x3, type );
-		struct matrix * ycons = generate_curve_coefs( y0, y1, y2, y3, type );
-		/*
-		for ( t = 0; t <= 1.00000001; t+=step ) {
-			x = cubic_x( xcons->m[0][0], xcons->m[1][0], xcons->m[2][0], xcons->m[3][0], t );
-			y = cubic_y( ycons->m[0][0], ycons->m[1][0], ycons->m[2][0], ycons->m[3][0], t );
-			//printf( "%lf %lf\n", x, y );
-			add_edge( points, x0, y0, 0, x, y, 0 );
-			x0 = x;
-			y0 = y;
+		  
+		  double t, xi, yi, xf, yf, rx, ry;
+		  xi = x0;
+		  yi = y0;
+		  
+		  if ( type == HERMITE_MODE ) {
+		    struct matrix * xcons = generate_curve_coefs( x0, x2, x1, x3, type );
+		    struct matrix * ycons = generate_curve_coefs( y0, y2, y1, y3, type );
+		      for ( t = 0; t <= 1.00000001; t+=step ) {
+		        //points
+		        xf = cubic( t, xcons->m[0][0], xcons->m[1][0], xcons->m[2][0], xcons->m[3][0] );
+		        yf = cubic( t, ycons->m[0][0], ycons->m[1][0], ycons->m[2][0], ycons->m[3][0] );
+		        //rates
+		        //rx = rate( t, xcons->m[0][0], xcons->m[1][0], xcons->m[2][0], xcons->m[3][0] );
+		        //ry = rate( t, ycons->m[0][0], ycons->m[1][0], ycons->m[2][0], ycons->m[3][0] );
+		        //new point???
+		        xf = xf;
+		        yf = yf;
+		        //add
+		        add_edge( points, xi, yi, 0, xf, yf, 0 );
+		        xi = xf;
+		        yi = yf;
+		      }
+		  }
+		  else { // BEZIER_MODE
+		    struct matrix * xcons = generate_curve_coefs( x0, x1, x2, x3, type );
+		    struct matrix * ycons = generate_curve_coefs( y0, y1, y2, y3, type );
+		      for ( t = 0; t <= 1.01; t+=step) {
+		        //xf = cubic( t, xcons->m[0][0], xcons->m[1][0], xcons->m[2][0], xcons->m[3][0] );
+			    //yf = cubic( t, ycons->m[0][0], ycons->m[1][0], ycons->m[2][0], ycons->m[3][0] );
+			      //printf( "%lf %lf\n", x, y );
+			    xf = xcons->m[0][0]* pow(t,3) + xcons->m[1][0]* pow(t,2) + xcons->m[2][0]*t + xcons->m[3][0];
+				yf = ycons->m[0][0]* pow(t,3) + ycons->m[1][0]* pow(t,2) + ycons->m[2][0]*t + ycons->m[3][0];
+			      add_edge( points, xi, yi, 0, xf, yf, 0 );
+			      xi = xf;
+			      yi = yf;
+		      }
+		  }
 		}
-		*/
-}
-
-double cubic_x( double a, double b, double c, double d, double t ) {
-
-	return ( pow(a, 3)*t ) + ( pow(b, 2)*t ) + ( c*t ) + d;
-
-}
-
-double cubic_y( double a, double b, double c, double d, double t ) {
-
-	return ( pow(a, 3)*t ) + ( pow(b, 2)*t ) + ( c*t ) + d;
-
-}
 
 /*======== void add_point() ==========
 Inputs:   struct matrix * points
