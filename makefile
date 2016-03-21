@@ -23,3 +23,6 @@ parser.o: parser.c parser.h matrix.h draw.h display.h ml6.h
 
 clean:
 	rm *.o *~
+
+run: 
+	./main my_script
