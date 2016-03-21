@@ -136,21 +136,21 @@ void parse_file ( char * filename,
       fgets(line, 255, f);
       double theta;
       sscanf(line, "%lf", &theta);
-      struct matrix *rotx = make_rotX(theta * 180 / M_PI);
+      struct matrix *rotx = make_rotX(theta * M_PI / 180);
       matrix_mult(rotx, transform);
     }
     else if (!strcmp(line, "yrotate")) {
       fgets(line, 255, f);
       double theta;
       sscanf(line, "%lf", &theta);
-      struct matrix *roty = make_rotY(theta * 180 / M_PI);
+      struct matrix *roty = make_rotY(theta * M_PI / 180);
       matrix_mult(roty, transform);
     }
     else if (!strcmp(line, "zrotate")) {
       fgets(line, 255, f);
       double theta;
       sscanf(line, "%lf", &theta);
-      struct matrix *rotz = make_rotZ(theta * 180 / M_PI);
+      struct matrix *rotz = make_rotZ(theta * M_PI / 180);
       matrix_mult(rotz, transform);
     }
     else if (!strcmp(line, "apply")){
