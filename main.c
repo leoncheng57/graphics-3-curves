@@ -32,7 +32,7 @@ int main( int argc, char **argv ) {
 
   display( s );
   //save_extension(s, "lines.png");
-  
+
 
   free_matrix( transform );
   free_matrix( edges );
