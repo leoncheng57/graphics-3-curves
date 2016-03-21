@@ -77,7 +77,7 @@ void parse_file ( char * filename,
   c.blue = 201;
 
   clear_screen(s);
-  
+
   if ( strcmp(filename, "stdin") == 0 )
     f = stdin;
   else
@@ -85,26 +85,18 @@ void parse_file ( char * filename,
 
   while ( fgets(line, 255, f) != NULL ) {
   	if (strstr(line, "\n")) {
-		line[strlen(line)-1]='\0';
+  		line[strlen(line)-1]='\0';
     	printf(":%s:\n",line);
   	}
-    else if ( !strcmp( line, "quit")) {
+    if ( !strcmp( line, "quit")) {
     	fclose(f);
     	exit(0);
     }
-    else if (!strcmp(line, "line")) {
-		fgets(line, 255, f);
-		if (strstr(line, "\n"))
-			line[strlen(line)-1]='\0';
-		char *cmd = line;
-		double x0,y0,z0,x1,y1,z1;
-		sscanf(strsep(&cmd, " "), "%lf", &x0);
-		sscanf(strsep(&cmd, " "), "%lf", &y0);
-		sscanf(strsep(&cmd, " "), "%lf", &z0);
-		sscanf(strsep(&cmd, " "), "%lf", &x1);
-		sscanf(strsep(&cmd, " "), "%lf", &y1);
-		sscanf(strsep(&cmd, " "), "%lf", &z1);
-		add_edge( pm, x0, y0, z0, x1, y1, z1 );
+    if (!strcmp(line, "line")) {
+		    double x0,y0,z0,x1,y1,z1;
+        fgets(line, 255, f);
+		    sscanf(line, "%lf %lf %lf %lf %lf %lf", &x0,&y0,&z0,&x1,&y1,&z1);
+		    add_edge( pm, x0, y0, z0, x1, y1, z1 );
     }
     else if (!strcmp(line, "circle") || !strcmp(line, "c" )) {
 		fgets(line, 255, f);
@@ -149,7 +141,7 @@ void parse_file ( char * filename,
 		sscanf(strsep(&cmd, " "), "%lf", &y3);
 		add_curve(pm, x0, y0, x1, y1, x2, y2, x3, y3, .01, BEZIER_MODE);
 	}
-	else if (!strcmp(line, "ident")) 
+	else if (!strcmp(line, "ident"))
 		ident(transform);
 	else if (!strcmp(line, "scale")) {
 		fgets(line, 255, f);
@@ -205,7 +197,7 @@ void parse_file ( char * filename,
 		struct matrix *rotz = make_rotZ(theta * 180 / M_PI);
 		matrix_mult(rotz, transform);
   	}
-  	else if (!strcmp(line, "apply")) 
+  	else if (!strcmp(line, "apply"))
   		matrix_mult(transform, pm);
   	else if (!strcmp(line, "display")) {
   		draw_lines(pm,s,c);
