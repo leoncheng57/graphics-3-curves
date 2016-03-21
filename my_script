@@ -1,0 +1,16 @@
+circle
+250 250 200
+ident
+translate
+0 0 0
+apply
+bezier
+110 110 200 200 200 300 120 400
+bezier
+390 390 300 300 300 200 380 100
+bezier
+50 250 200 300 400 300 450 250
+bezier
+250 450 230 260 230 240 250 50
+display
+quit

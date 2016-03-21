@@ -153,8 +153,9 @@ void parse_file ( char * filename,
       struct matrix *rotz = make_rotZ(theta * 180 / M_PI);
       matrix_mult(rotz, transform);
     }
-    else if (!strcmp(line, "apply"))
+    else if (!strcmp(line, "apply")){
       matrix_mult(transform, pm);
+    }
     else if (!strcmp(line, "display")) {
       draw_lines(pm,s,c);
       display(s);
