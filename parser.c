@@ -165,5 +165,8 @@ void parse_file ( char * filename,
       display(s);
       save_extension(s, "cool.png");
     }
+    else if (!strcmp(line, "clear")) {
+      clear_screen(s);
+    }
   }
 }

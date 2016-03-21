@@ -1,3 +1,4 @@
+clear
 line
 0 0 0 100 0 0
 line
@@ -22,15 +23,18 @@ line
 100 100 0 100 100 100
 line
 100 0 0 100 0 100
+clear
 display
 ident
 scale
 1.5 1.5 1.5
 apply
+clear
 display
 translate
 100 100 0
 apply
+clear
 display
 ident
 zrotate
@@ -40,11 +44,13 @@ xrotate
 yrotate
 -20
 apply
+clear
 display
 ident
 yrotate
 -20
 apply
+clear
 display
 save
 pic.png
